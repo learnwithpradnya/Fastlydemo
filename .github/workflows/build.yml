@@ -1,0 +1,29 @@
+name: Deploy Static Website
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Debug files
+      run: ls -R
+
+    - name: Deploy
+      run: |
+        az storage blob upload-batch \
+          --account-name "${{ secrets.STORAGE_ACCOUNT_NAME }}" \
+          --destination '$web' \
+          --source . \
+          --overwrite \
+          --auth-mode login
