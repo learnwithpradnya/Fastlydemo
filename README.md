@@ -1,1 +1,1 @@
-Fastly CDN Usecase 
+Fastly CDN Usecase Demo
