@@ -1,1 +1,1 @@
-Fastly CDN Usecase Live 
+Added relevent permissions for the demo
